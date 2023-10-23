@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Blogiy</a>
+        <a class="navbar-brand" href="/">Blogiy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,13 +17,31 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Ashish
+                        <% if(locals.user) { %>
+                            <%=user.fullName%>
+                                <% } else { %>
+                                    User
+                                    <% } %>
+
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">LogOut</a></li>
+                        <% if(locals.user) { %>
+                            <li><a class="dropdown-item " href="http://localhost:8000/user/logout">LogOut</a>
+                                <% } else { %>
+                            <li><a class="dropdown-item " href="http://localhost:8000/user/signin">SignIn</a>
+                            <li><a class="dropdown-item " href="http://localhost:8000/user/signup">SignUp</a>
+                                <% } %>
+
+                            </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<% if (locals.error) { %>
+    <div class="alert alert-danger" role="alert">
+        <%=locals.error %>
+    </div>
+    <%} %>
