@@ -45,6 +45,7 @@ async function signInUserHandler(req, res) {
         .render("signin", { error: "Not a valid Password" });
     }
     const token = createToken(user);
+    req.user = user;
     return res.cookie("token", token).render("home", { user: user });
   } catch (error) {
     return res.status(401).render("signin", { error: "error from server" });

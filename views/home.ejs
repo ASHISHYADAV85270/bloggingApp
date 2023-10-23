@@ -9,7 +9,25 @@
 
 <body>
     <%- include('./partials/navbar') %>
-        <%- include('./partials/scripts') %>
+
+        <% if(locals.blogs){ %>
+            <% blogs.forEach(blog=> { %>
+                <div class="card mt-4 container " style="width: 18rem;">
+                    <img src="<%=blog.coverImageUrl %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= blog.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%= blog.body %>
+                        </p>
+                        <a href="#" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+
+                <% }); %>
+                    <% }%>
+                        <%- include('./partials/scripts') %>
 
 </body>
 

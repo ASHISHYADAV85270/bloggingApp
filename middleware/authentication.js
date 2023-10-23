@@ -6,6 +6,7 @@ function checkforAuthenticationCookie(req, res, next) {
   if (!tokenCookie) {
     return next();
   }
+
   const user = validateToken(tokenCookie);
   req.user = user;
   return next();
