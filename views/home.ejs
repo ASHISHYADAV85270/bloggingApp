@@ -8,23 +8,27 @@
 
 <body>
     <%- include('./partials/navbar') %>
-        <% if(locals.blogs){ %>
-            <% blogs.forEach(blog=> { %>
-                <div class="card mt-4 container col" style="width: 18rem; height: 22rem; padding: 2px">
-                    <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="..." style="height: 40%" />
-                    <div class="card-body" style="height: 60%">
-                        <h6 class="card-title">
-                            <%= blog.title %>
-                        </h6>
-                        <p class="card-text" style="width: 95%; height: 52%; overflow: hidden">
-                            <%= blog.body %>
-                        </p>
-                        <a href="/blog/<%=blog._id%>" class="btn btn-primary" target="_blank">View</a>
+
+        <div class="container "
+            style="display: flex; flex-wrap: wrap; align-items: center;gap:10px; justify-content: flex-start;">
+            <% if(locals.blogs){ %>
+                <% blogs.forEach(blog=> { %>
+                    <div class="card mt-4 container " style="width: 24%; height: 24rem; padding: 2px">
+                        <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="..." style="height: 9rem" />
+                        <div class="card-body mb-1" style="height: 13rem">
+                            <h6 class="card-title">
+                                <%= blog.title %>
+                            </h6>
+                            <p class="card-text" style="width: 95%; height: 7.2rem; overflow: hidden">
+                                <%= blog.body %>
+                            </p>
+                            <a href="/blog/<%=blog._id%>" class="btn btn-primary" target="_blank">View</a>
+                        </div>
                     </div>
-                </div>
-                <% }); %>
-                    <% }%>
-                        <%- include('./partials/scripts') %>
+                    <% }); %>
+                        <% }%>
+        </div>
+        <%- include('./partials/scripts') %>
 </body>
 
 </html>

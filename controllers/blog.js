@@ -1,4 +1,5 @@
 import { blogModel } from "../models/blog.js";
+import { commentModel } from "../models/comments.js";
 
 async function createAnewBlogHandler(req, res, next) {
   const { title, body } = req.body;
@@ -13,6 +14,12 @@ async function createAnewBlogHandler(req, res, next) {
 async function getBlogById(req, res, next) {
   const { id } = req.params;
   const blog = await blogModel.findById(id).populate("createdBy");
-  return res.render("blog", { user: req.user, blog });
+  const sortparameters = { createdAt: -1 };
+  const comments = await commentModel
+    .find({ blogId: id })
+    .populate("createdBy")
+    .sort(sortparameters);
+  console.log(comments);
+  return res.render("blog", { user: req.user, blog, comments });
 }
 export { createAnewBlogHandler, getBlogById };

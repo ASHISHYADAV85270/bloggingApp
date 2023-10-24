@@ -19,7 +19,7 @@ async function signUpUserHandler(req, res) {
     user.salt = undefined;
     user.password = undefined;
     res.user = user;
-    return res.cookie("token", token).render("home", { user: user });
+    return res.cookie("token", token).redirect("/");
   } catch (error) {
     return res
       .status(401)
@@ -46,7 +46,7 @@ async function signInUserHandler(req, res) {
     }
     const token = createToken(user);
     req.user = user;
-    return res.cookie("token", token).render("home", { user: user });
+    return res.cookie("token", token).redirect("/");
   } catch (error) {
     return res.status(401).render("signin", { error: "error from server" });
   }

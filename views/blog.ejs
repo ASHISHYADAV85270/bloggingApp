@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %>
-    <title>Blog</title>
-  </head>
 
-  <body>
+<head>
+    <%- include('./partials/head') %>
+        <title>Blog</title>
+</head>
+
+<body>
     <%- include('./partials/navbar') %>
-    <div class="mt-4 container">
-      <img
-        src="<%= blog.coverImageUrl %>"
-        class="card-img-top"
-        alt="..."
-        style="width: 80vw; height: 50vh"
-      />
-      <h1><%= blog.title %></h1>
-      <p class="mt-1"><%= blog.body %></p>
-    </div>
-    <div class="mt-4 container">
-      <img src="<%= blog.createdBy.profileImageUrl %>" width="30px" />
-      <%= blog.createdBy.fullName %>
-    </div>
-    <%- include('./partials/scripts') %>
-  </body>
+        <div class="mt-4 container">
+            <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="..." style="width: 80vw; height: 50vh" />
+            <h1>
+                <%= blog.title %>
+            </h1>
+            <p class="mt-1">
+                <%= blog.body %>
+            </p>
+        </div>
+        <div class="mt-4 container" style="font-style: italic; font-weight: bold;">
+            CreatedBy: <img src="<%= blog.createdBy.profileImageUrl %>" width="30px" />
+            <%= blog.createdBy.fullName %>
+        </div>
+        <div class="container mt-4 mb-5">
+            <% if (locals.user) { %>
+                <h6>Comment Section </h6>
+                <form action="/comment/<%= blog._id%>" method="post">
+                    <div class="mb-3">
+                        <input type="text" name="content" class="form-control" placeholder="Enter comment" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <% } else { %>
+
+                    <a class="dropdown-item " href="http://localhost:8000/user/signin">
+                        <button class="btn btn-primary">To Comment SignIn First </button>
+                    </a>
+
+                    <% } %>
+
+                        <% if (locals.comments) { %>
+                            <div class="container mt-5 p-3">
+                                <% comments.forEach(comment=> { %>
+                                    <div class="container mt-1 " style="display: flex; align-self: center; gap: 15px; ">
+                                        <p style="font-style: italic; font-weight: bold;">
+                                            <img src="<%= comment.createdBy.profileImageUrl %>" width="30px"
+                                                height="30px" />
+                                            <%= comment.createdBy.fullName%> :
+                                        </p>
+                                        <p>
+                                            <%= comment.content %>
+                                        </p>
+                                    </div>
+                                    <%})%>
+                            </div>
+                            <% } %>
+
+        </div>
+        <%- include('./partials/scripts') %>
+</body>
+
 </html>
