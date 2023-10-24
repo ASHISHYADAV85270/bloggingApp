@@ -1,20 +1,21 @@
 import express from "express";
 import path from "path";
+import { config } from "dotenv";
 import { userRouter } from "./routes/user.js";
 import { blogRouter } from "./routes/blog.js";
 import { commentRouter } from "./routes/comment.js";
 
 import { connectMongoDB } from "./connection.js";
 import cookieParser from "cookie-parser";
-import {
-  checkforAuthenticationCookie,
-  checkLogin,
-} from "./middleware/authentication.js";
+import { checkforAuthenticationCookie } from "./middleware/authentication.js";
 import { blogModel } from "./models/blog.js";
+config({
+  path: "./.env",
+});
 const app = express();
-const PORT = 8000;
-const dblink =
-  "mongodb+srv://ashish_practice:qwer1234@mybackend.mhfbkfd.mongodb.net/?retryWrites=true&w=majority";
+const PORT = process.env.PORT || 8002;
+const dblink = process.env.dblink;
+export const secretKey = process.env.secretKey;
 
 connectMongoDB(dblink);
 app.use(express.static(path.resolve("./public")));

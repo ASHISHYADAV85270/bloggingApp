@@ -1,7 +1,5 @@
 import jwt from "jsonwebtoken";
-const secretKey =
-  "afgsfdbgfa+*+*/sgfsadfadda!$#^@fdfwer523435152435@tsdfjdtsehdjfghgdsefdvfd";
-
+import { secretKey } from "../app.js";
 function createToken(user) {
   const payload = {
     _id: user._id,

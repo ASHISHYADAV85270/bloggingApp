@@ -19,7 +19,6 @@ async function getBlogById(req, res, next) {
     .find({ blogId: id })
     .populate("createdBy")
     .sort(sortparameters);
-  console.log(comments);
   return res.render("blog", { user: req.user, blog, comments });
 }
 export { createAnewBlogHandler, getBlogById };

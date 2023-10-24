@@ -8,10 +8,18 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8000/blog/add-new">Add Blog</a>
+                <li class="nav-item" style="color: white;">
+                    <a class="nav-link" href="/blog/add-new"> <svg width="22" height="22" viewBox="0 0 24 24"
+                            fill="none" aria-label="Write">
+                            <path
+                                d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z"
+                                fill="currentColor"></path>
+                            <path
+                                d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2"
+                                stroke="currentColor"></path>
+                        </svg> Write</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -26,10 +34,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <% if(locals.user) { %>
-                            <li><a class="dropdown-item " href="http://localhost:8000/user/logout">LogOut</a>
+                            <li><a class="dropdown-item " href="/user/logout">LogOut</a>
                                 <% } else { %>
-                            <li><a class="dropdown-item " href="http://localhost:8000/user/signin">SignIn</a>
-                            <li><a class="dropdown-item " href="http://localhost:8000/user/signup">SignUp</a>
+                            <li><a class="dropdown-item " href="/user/signin">SignIn</a>
+                            <li><a class="dropdown-item " href="/user/signup">SignUp</a>
                                 <% } %>
 
                             </li>
