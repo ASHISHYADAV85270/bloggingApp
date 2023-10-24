@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Blog</title>
+  </head>
+
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="mt-4 container">
+      <img
+        src="<%= blog.coverImageUrl %>"
+        class="card-img-top"
+        alt="..."
+        style="width: 80vw; height: 50vh"
+      />
+      <h1><%= blog.title %></h1>
+      <p class="mt-1"><%= blog.body %></p>
+    </div>
+    <div class="mt-4 container">
+      <img src="<%= blog.createdBy.profileImageUrl %>" width="30px" />
+      <%= blog.createdBy.fullName %>
+    </div>
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

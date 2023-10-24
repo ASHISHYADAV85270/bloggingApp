@@ -1,7 +1,9 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import { createAnewBlogHandler } from "../controllers/blog.js";
+import { createAnewBlogHandler, getBlogById } from "../controllers/blog.js";
+import { blogModel } from "../models/blog.js";
+import { checkLogin } from "../middleware/authentication.js";
 
 const blogRouter = express.Router();
 
@@ -16,8 +18,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-blogRouter.get("/add-new", (req, res) => {
+blogRouter.get("/add-new", checkLogin, (req, res) => {
   return res.render("addBlog", { user: req.user });
 });
+blogRouter.get("/:id", getBlogById);
 blogRouter.post("/", upload.single("coverImageUrl"), createAnewBlogHandler);
 export { blogRouter };

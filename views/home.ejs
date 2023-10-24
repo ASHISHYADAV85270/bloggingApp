@@ -2,33 +2,29 @@
 <html lang="en">
 
 <head>
-
     <%- include('./partials/head') %>
         <title>HomePage</title>
 </head>
 
 <body>
     <%- include('./partials/navbar') %>
-
         <% if(locals.blogs){ %>
             <% blogs.forEach(blog=> { %>
-                <div class="card mt-4 container " style="width: 18rem;">
-                    <img src="<%=blog.coverImageUrl %>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">
+                <div class="card mt-4 container col" style="width: 18rem; height: 22rem; padding: 2px">
+                    <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="..." style="height: 40%" />
+                    <div class="card-body" style="height: 60%">
+                        <h6 class="card-title">
                             <%= blog.title %>
-                        </h5>
-                        <p class="card-text">
+                        </h6>
+                        <p class="card-text" style="width: 95%; height: 52%; overflow: hidden">
                             <%= blog.body %>
                         </p>
-                        <a href="#" class="btn btn-primary">View</a>
+                        <a href="/blog/<%=blog._id%>" class="btn btn-primary" target="_blank">View</a>
                     </div>
                 </div>
-
                 <% }); %>
                     <% }%>
                         <%- include('./partials/scripts') %>
-
 </body>
 
 </html>
